@@ -1,0 +1,28 @@
+<%= form_tag '/deco/update/' do %>
+    <p><%= submit_tag Spree.t(:update) %></p>
+    <table>
+    <% @categories.each do |category| %>
+        <tr>
+              <td><%= category %></td>
+              <td><%= select_tag "category[#{category}]", options_for_select(@redbox_categories.collect{ |u| [u.name, u.id] }), class: 'select2' %></td>
+        </tr>
+    <% end %>
+    </table>
+    <p><%= submit_tag Spree.t(:update) %></p>
+<% end %>
+
+
+
+<% if false %>
+    <%= simple_form_for :deco, { url: '/deco/update/' } do |f| %>
+        <% @categories.each do |category| %>
+            <%= f.input "category[#{category}]".to_sym, required: false %>
+
+        <% end %>
+        <% if false %>
+            <%= f.input :email %>
+            <%= f.input :password %>
+        <% end %>
+        <%= f.button :submit, Spree.t(:update) %>
+    <% end %>
+<% end %>
